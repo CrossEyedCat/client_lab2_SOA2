@@ -16,7 +16,7 @@ const parseXML = async (xmlString) => {
 export const fetchDragons = async (baseURL, page = 1, size = 10, sort = 'name', filter = '') => {
     try {
 
-        const response = await axios.get(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons`, {
+        const response = await axios.get(`${baseURL}/dragons`, {
             headers: getHeaders(),
             params: { page, size, sort, filter },
         });
@@ -58,7 +58,7 @@ export const fetchDragons = async (baseURL, page = 1, size = 10, sort = 'name', 
 };
 export const getDragonById = async (id, baseURL) => {
     try {
-        const response = await axios.get(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/${id}`, {
+        const response = await axios.get(`${baseURL}/dragons/${id}`, {
             headers: getHeaders(),
         });
         let dragon = await parseXML(response.data);
@@ -98,7 +98,7 @@ export const getDragonById = async (id, baseURL) => {
 
 export const updateDragonById = async (id, dragonData, baseURL) => {
     try {
-        const response = await axios.put(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/${id}`, dragonData, {
+        const response = await axios.put(`${baseURL}/dragons/${id}`, dragonData, {
             headers: {
                 ...getHeaders(),
                 'Content-Type': 'application/xml',
@@ -113,7 +113,7 @@ export const updateDragonById = async (id, dragonData, baseURL) => {
 
 export const deleteDragonById = async (id, baseURL) => {
     try {
-        await axios.delete(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/${id}`, {
+        await axios.delete(`${baseURL}/dragons/${id}`, {
             headers: getHeaders(),
         });
     } catch (error) {
@@ -123,7 +123,7 @@ export const deleteDragonById = async (id, baseURL) => {
 
 export const getDragonsGroupedByName = async (baseURL) => {
     try {
-        const response = await axios.get(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/group-by-name`, {
+        const response = await axios.get(`${baseURL}/dragons/group-by-name`, {
             headers: getHeaders(),
         });
         console.log(response.data, parseXML(response.data));
@@ -139,7 +139,7 @@ export const getDragonsGroupedByName = async (baseURL) => {
 
 export const getCountSpeakingDragons = async (baseURL) => {
     try {
-        const response = await axios.get(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/count-speaking`, {
+        const response = await axios.get(`${baseURL}/dragons/count-speaking`, {
             headers: getHeaders(),
         });
         const parsedData = await parseXML(response.data);
@@ -156,7 +156,7 @@ export const getCountSpeakingDragons = async (baseURL) => {
 
 export const searchDragonsByName = async (prefix, baseURL) => {
     try {
-        const response = await axios.get(`${baseURL}/dragonservice-1.0-SNAPSHOT/api/dragons/search-by-name`, {
+        const response = await axios.get(`${baseURL}/dragons/search-by-name`, {
             headers: getHeaders(),
             params: { prefix },
         });
